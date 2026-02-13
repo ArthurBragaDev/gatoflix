@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GatoFlix</title>
-
-    <link rel="shortcut icon" href="/static/fav.ico" />
-
+    <title>🎬 GatoFlix - Movie Scraper</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,20 +18,19 @@
       }
 
       :root {
-        /* Nova Paleta: Vermelho e Preto */
-        --primary: #e50914; /* Vermelho estilo Streaming */
-        --primary-dark: #b20710;
-        --secondary: #831010;
-        --accent: #f5f5f5;
-        --background: #000000; /* Preto absoluto */
-        --surface: #141414; /* Cinza muito escuro */
-        --surface-light: #2f2f2f;
-        --border: #333333;
-        --text-primary: #ffffff;
-        --text-secondary: #b3b3b3;
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #ec4899;
+        --accent: #14b8a6;
+        --background: #0f172a;
+        --surface: #1e293b;
+        --surface-light: #334155;
+        --border: #475569;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
         --success: #10b981;
         --warning: #f59e0b;
-        --error: #e50914;
+        --error: #ef4444;
       }
 
       body {
@@ -44,25 +40,24 @@
           BlinkMacSystemFont,
           "Segoe UI",
           sans-serif;
-        /* Gradiente sutil do preto para um tom avermelhado muito escuro no final */
-        background: linear-gradient(180deg, var(--background) 0%, #1a0505 100%);
+        background: linear-gradient(135deg, var(--background) 0%, #1a1f3a 100%);
         color: var(--text-primary);
         min-height: 100vh;
         overflow-x: hidden;
         position: relative;
       }
 
-      /* Elementos de fundo animados (Glow Vermelho) */
+      /* Animated background elements */
       body::before {
         content: "";
         position: fixed;
         top: -50%;
         right: -10%;
-        width: 600px;
-        height: 600px;
+        width: 500px;
+        height: 500px;
         background: radial-gradient(
           circle,
-          rgba(229, 9, 20, 0.15) 0%,
+          rgba(99, 102, 241, 0.1) 0%,
           transparent 70%
         );
         border-radius: 50%;
@@ -76,11 +71,11 @@
         position: fixed;
         bottom: -20%;
         left: -5%;
-        width: 500px;
-        height: 500px;
+        width: 400px;
+        height: 400px;
         background: radial-gradient(
           circle,
-          rgba(131, 16, 16, 0.1) 0%,
+          rgba(236, 72, 153, 0.1) 0%,
           transparent 70%
         );
         border-radius: 50%;
@@ -116,28 +111,95 @@
         align-items: center;
       }
 
-      h1 {
-        font-size: 4em;
-        font-weight: 800;
-        /* Texto com gradiente Vermelho -> Branco */
+      .logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .logo-icon {
+        width: 50px;
+        height: 50px;
         background: linear-gradient(
           135deg,
           var(--primary) 0%,
-          #ff4d4d 50%,
-          #ffffff 100%
+          var(--secondary) 100%
+        );
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+      }
+
+      .couple-names span {
+        font-size: 1.5em;
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.5px;
+      }
+
+      .couple-names .heart {
+        color: var(--secondary);
+        font-size: 1.8em;
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.2);
+        }
+        50% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 3.5em;
+        font-weight: 800;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 50%,
+          var(--accent) 100%
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin-bottom: 10px;
-        letter-spacing: -2px;
-        text-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+        letter-spacing: -1px;
       }
 
       .tagline {
         color: var(--text-secondary);
         font-size: 1.1em;
-        font-weight: 400;
+        font-weight: 300;
         letter-spacing: 0.5px;
       }
 
@@ -150,24 +212,24 @@
       .search-box {
         display: flex;
         gap: 12px;
-        background: rgba(20, 20, 20, 0.8);
+        background: rgba(30, 41, 59, 0.6);
         border: 1px solid var(--border);
-        border-radius: 4px; /* Bordas mais quadradas estilo cinema */
+        border-radius: 16px;
         padding: 8px;
         backdrop-filter: blur(10px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       }
 
       .search-box:hover {
-        border-color: var(--primary-dark);
-        box-shadow: 0 8px 32px rgba(229, 9, 20, 0.1);
+        border-color: var(--primary);
+        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
       }
 
       .search-box:focus-within {
         border-color: var(--primary);
-        background: black;
-        box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
+        background: rgba(30, 41, 59, 0.8);
+        box-shadow: 0 12px 48px rgba(99, 102, 241, 0.2);
       }
 
       #searchInput {
@@ -183,50 +245,84 @@
 
       #searchInput::placeholder {
         color: var(--text-secondary);
-        opacity: 0.6;
+        opacity: 0.7;
       }
 
       .search-btn {
         padding: 12px 32px;
-        background: var(--primary);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
         color: white;
         border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        font-weight: 700;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-right: 0;
-        box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+        margin-right: 4px;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         position: relative;
         overflow: hidden;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
+      }
+
+      .search-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
       }
 
       .search-btn:hover {
-        background: var(--primary-dark);
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark) 0%,
+          var(--primary) 100%
+        );
+      }
+
+      .search-btn:hover::before {
+        left: 100%;
       }
 
       .search-btn:active {
         transform: translateY(0px);
+        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
       }
 
       .search-btn:disabled {
-        background: var(--surface-light);
-        color: var(--text-secondary);
-        box-shadow: none;
+        opacity: 0.6;
         cursor: not-allowed;
       }
 
       .search-icon {
         width: 18px;
         height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+
+      .search-btn:hover .search-icon {
+        transform: scale(1.1);
       }
 
       /* Status Messages */
@@ -234,12 +330,6 @@
         display: none;
         margin: 30px 0;
         text-align: center;
-      }
-
-      .logo {
-        height: 80px;          /* Ajuste a altura conforme necessário */
-        width: auto;      
-        margin-bottom: 20px;     /* Mantém a proporção da imagem */
       }
 
       .loading {
@@ -256,10 +346,12 @@
       .spinner {
         width: 50px;
         height: 50px;
-        border: 4px solid rgba(255, 255, 255, 0.1);
-        border-top-color: var(--primary); /* Vermelho */
+        border: 3px solid rgba(99, 102, 241, 0.1);
+        border-top-color: var(--primary);
+        border-right-color: var(--secondary);
         border-radius: 50%;
-        animation: spin 1s ease-in-out infinite;
+        animation: spin 1.2s linear infinite;
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
       }
 
       @keyframes spin {
@@ -276,11 +368,11 @@
       }
 
       .error {
-        background: rgba(229, 9, 20, 0.1);
-        border: 1px solid var(--primary);
-        color: #ffcccc;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #fca5a5;
         padding: 18px 24px;
-        border-radius: 8px;
+        border-radius: 12px;
         display: none;
         font-weight: 500;
         backdrop-filter: blur(10px);
@@ -350,39 +442,58 @@
 
       /* Movie Card */
       .movie-card {
-        background: var(--surface);
-        border: 1px solid #2a2a2a;
-        border-radius: 8px;
+        background: rgba(30, 41, 59, 0.4);
+        border: 1px solid var(--border);
+        border-radius: 16px;
         overflow: hidden;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
+        backdrop-filter: blur(10px);
         position: relative;
         display: flex;
         flex-direction: column;
         height: 100%;
       }
 
-      .movie-card:hover {
-        transform: scale(1.05);
-        border-color: var(--primary);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-        z-index: 2;
-      }
-
-      /* Efeito de brilho vermelho no hover */
-      .movie-card:hover::after {
+      .movie-card::before {
         content: "";
         position: absolute;
         inset: 0;
-        box-shadow: inset 0 0 20px rgba(229, 9, 20, 0.2);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
         pointer-events: none;
-        border-radius: 8px;
+        z-index: 1;
+        border-radius: 16px;
+      }
+
+      .movie-card:hover::before {
+        opacity: 0.05;
+      }
+
+      .movie-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.25);
+        background: rgba(30, 41, 59, 0.6);
+      }
+
+      .movie-card:active {
+        transform: translateY(-4px);
       }
 
       .movie-poster {
         width: 100%;
-        aspect-ratio: 2/3;
-        background: #1a1a1a;
+        aspect-ratio: 3/4;
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.1) 0%,
+          rgba(236, 72, 153, 0.1) 100%
+        );
         display: flex;
         align-items: center;
         justify-content: center;
@@ -395,21 +506,25 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .movie-card:hover .movie-poster img {
+        transform: scale(1.08);
       }
 
       .movie-info {
         padding: 16px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
         flex-grow: 1;
-        background: var(--surface);
+        position: relative;
         z-index: 2;
       }
 
       .movie-title {
-        font-weight: 600;
+        font-weight: 700;
         color: var(--text-primary);
         font-size: 0.95em;
         line-height: 1.4;
@@ -418,29 +533,39 @@
         line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        letter-spacing: -0.3px;
       }
 
       .movie-type {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 4px 8px;
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-secondary);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        font-size: 0.75em;
-        font-weight: 500;
+        padding: 6px 12px;
+        background: rgba(99, 102, 241, 0.2);
+        color: #c7d2fe;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 8px;
+        font-size: 0.8em;
+        font-weight: 600;
         width: fit-content;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        letter-spacing: 0.3px;
       }
 
-      /* Destaque para séries vs filmes */
+      .movie-card:hover .movie-type {
+        background: rgba(99, 102, 241, 0.3);
+        border-color: var(--primary);
+      }
+
       .movie-type.tv {
-        background: rgba(229, 9, 20, 0.15);
-        color: #ff8085;
-        border-color: rgba(229, 9, 20, 0.3);
+        background: rgba(236, 72, 153, 0.2);
+        color: #fbcfe8;
+        border-color: rgba(236, 72, 153, 0.3);
+      }
+
+      .movie-card:hover .movie-type.tv {
+        background: rgba(236, 72, 153, 0.3);
+        border-color: var(--secondary);
       }
 
       /* Results Counter */
@@ -450,14 +575,13 @@
         justify-content: space-between;
         margin-bottom: 30px;
         padding: 0 10px;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 15px;
       }
 
       .results-count {
         color: var(--text-secondary);
         font-size: 0.95em;
-        font-weight: 400;
+        font-weight: 500;
+        letter-spacing: 0.5px;
       }
 
       .results-count strong {
@@ -473,14 +597,17 @@
         border-top: 1px solid var(--border);
         color: var(--text-secondary);
         font-size: 0.9em;
-        opacity: 0.6;
-        padding-bottom: 40px;
+        opacity: 0.7;
       }
 
       /* Responsive */
       @media (max-width: 768px) {
         h1 {
           font-size: 2.5em;
+        }
+
+        .couple-names span {
+          font-size: 1.2em;
         }
 
         .search-box {
@@ -492,27 +619,29 @@
           justify-content: center;
         }
       }
+
+      /* Smooth transitions */
+      * {
+        transition-property: color, background-color, border-color, box-shadow;
+      }
     </style>
   </head>
   <body>
     <div class="container">
+      <!-- Header -->
       <div class="header">
-  
-  <div class="header-texto">
-    <h1>GatoFlix <img src="logo.png" alt="Logo GatoFlix" class="logo"></h1>
-    <p class="tagline">Descubra filmes e séries incríveis</p>
-    
-  </div>
-</div>
-</div>
+        <div class="logo-section"></div>
+        <h1>GatoFlix</h1>
+        <p class="tagline">Descubra filmes e séries incríveis</p>
+      </div>
 
+      <!-- Search Section -->
       <div class="search-section">
-        
         <div class="search-box">
           <input
             type="text"
             id="searchInput"
-            placeholder="Títulos, gente, gêneros..."
+            placeholder="Procure por filmes, séries ou atores..."
             autocomplete="off"
           />
           <button class="search-btn" id="searchBtn">
@@ -521,7 +650,7 @@
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="3"
+              stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
@@ -533,31 +662,34 @@
         </div>
       </div>
 
+      <!-- Status Container -->
       <div class="status-container">
         <div class="loading" id="loading">
           <div class="spinner"></div>
-          <p class="loading-text">Carregando catálogo...</p>
+          <p class="loading-text">Buscando...</p>
         </div>
 
         <div class="error" id="error"></div>
 
         <div class="no-results" id="noResults">
-          🍿 Prepare a pipoca e faça sua busca
+          ✨ Digite algo para começar a explorar
         </div>
       </div>
 
+      <!-- Results -->
       <div id="resultsWrapper">
         <div class="results-header" id="resultsHeader" style="display: none">
           <div class="results-count">
-            Encontrados <strong id="resultCount">0</strong> títulos
+            Encontrados <strong id="resultCount">0</strong> resultados
           </div>
         </div>
         <div class="results" id="results"></div>
       </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
-      <p>🎬 GatoFlix © 2026 • Design by Arthur Braga</p>
+      <p>🎥 GatoFlix © 2026</p>
     </div>
 
     <script>
@@ -582,7 +714,7 @@
         const query = searchInput.value.trim();
 
         if (!query) {
-          showNoResults("🍿 Prepare a pipoca e faça sua busca");
+          showNoResults("✨ Digite algo para começar a explorar");
           return;
         }
 
@@ -590,8 +722,6 @@
         searchBtn.disabled = true;
 
         try {
-          // Nota: Mantive a mesma rota de API, assumindo que seu backend
-          // continua funcionando igual.
           const response = await fetch("/api/search", {
             method: "POST",
             headers: {
@@ -608,13 +738,13 @@
           }
 
           if (data.results.length === 0) {
-            showNoResults(`💀 Nada encontrado para "${query}"`);
+            showNoResults(`😢 Nenhum resultado encontrado para "${query}"`);
             return;
           }
 
           displayResults(data.results);
         } catch (err) {
-          showError("Erro de conexão. Verifique sua internet.");
+          showError("Erro ao conectar ao servidor");
           console.error(err);
         } finally {
           searchBtn.disabled = false;
@@ -631,7 +761,7 @@
           const card = document.createElement("div");
           card.className = "movie-card";
 
-          const typeClass = movie.media_type === "tv" ? "tv" : "movie";
+          const typeClass = movie.media_type === "tv" ? "tv" : "";
           const typeText = movie.media_type === "tv" ? "Série" : "Filme";
 
           card.innerHTML = `
@@ -639,7 +769,7 @@
                         ${
                           movie.cover_url
                             ? `<img src="${movie.cover_url}" alt="${movie.title}" loading="lazy">`
-                            : `<span style="color:var(--primary); font-size: 3rem;">🎬</span>`
+                            : "🎬"
                         }
                     </div>
                     <div class="movie-info">
@@ -682,7 +812,7 @@
       }
 
       // Initial state
-      showNoResults("🍿 Prepare a pipoca e faça sua busca");
+      showNoResults("✨ Digite algo para começar a explorar");
     </script>
   </body>
-</html>
+</html> 
